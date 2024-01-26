@@ -27,7 +27,6 @@ export default function RootLayout({
             attribute='class'
             forcedTheme='dark'
             storageKey='gamehub-theme'
-
         >
           {children}
         </ThemeProvider>
