@@ -50,13 +50,44 @@ export async function POST(req: Request) {
 
     const eventType = evt.type;
 
-    // Handle the event
+    // create the user if they don't exist
     if (eventType === 'user.created') {
         await db.user.create({
             data: {
                 externalUserId: payload.data.id,
                 username: payload.data.username,
                 imageUrl: payload.data.image_url
+            }
+        })
+    }
+
+    if (eventType === 'user.updated') {
+        // Find the user
+        // const currentUser = await db.user.findUnique({
+        //     where: {
+        //         externalUserId: payload.data.id
+        //     }
+        // })
+        // if (!currentUser) {
+        //     return new Response('Error occured -- user not found', { status: 404 })
+        // }
+
+        // Update the user if they already exist
+        await db.user.update({
+            where: {
+                externalUserId: payload.data.id
+            },
+            data: {
+                username: payload.data.username,
+                imageUrl: payload.data.image_url
+            }
+        })
+    }
+
+    if (eventType === 'user.deleted') {
+        await db.user.delete({
+            where: {
+                externalUserId: payload.data.id
             }
         })
     }
