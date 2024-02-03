@@ -8,6 +8,6 @@ export const getRecommended = async () => {
             createdAt: "desc"
         }
     })
-    
+
     return users;
 }
