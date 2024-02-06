@@ -15,7 +15,7 @@ interface WrapperProps {
 export const Wrapper = ({children}: WrapperProps) => {
     const isClient = useIsClient()
     const { collapsed } = useSidebar((state) => state)
-    
+
 
     // if the sidebar is collapsed, the width is 70px for server side rendering
     if (!isClient) return (
