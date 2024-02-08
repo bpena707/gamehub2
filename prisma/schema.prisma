@@ -33,7 +33,7 @@ model Follow {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([followerId, followingId]) // index for faster queries
+  @@unique([followerId, followingId]) // unique combination, index for faster queries
   @@index([followerId])
   @@index([followingId])
 }
