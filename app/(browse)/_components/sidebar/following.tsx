@@ -3,7 +3,7 @@
 import {Follow} from "@prisma/client";
 import {User} from ".prisma/client";
 import {useSidebar} from "@/store/use-sidebar";
-import {UserItem} from "@/app/(browse)/_components/sidebar/user-item";
+import {UserItem, UserItemSkeleton} from "@/app/(browse)/_components/sidebar/user-item";
 
 interface FollowingProps {
     data: (Follow & { following : User })[]
@@ -31,11 +31,20 @@ export const Following =({data} : FollowingProps) => {
                         key={follow.following.id}
                         username={follow.following.username}
                         imageUrl={follow.following.imageUrl}
-                        isLive={true}
                     />
                 ))}
             </ul>
         </div>
+    )
+}
+
+export const FollowingSkeleton = () => {
+    return (
+        <ul className='px-2 pt-2 lg:pt-0'>
+            {[...Array(5)].map((_, i) => (
+                <UserItemSkeleton key={i}/>
+            ))}
+        </ul>
     )
 }
 
