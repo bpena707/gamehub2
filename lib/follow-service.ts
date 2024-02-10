@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/db";
 import {getSelf} from "@/lib/auth-service";
+import exp from "node:constants";
 
 export const isFollowingUser = async (id: string) => {
     // try is necessary so that even logged in users can see the profile of other users
@@ -76,6 +77,49 @@ export const followUser = async (id: string) => {
         include: {
             following: true,
             follower: true
+        }
+    })
+
+    return follow
+}
+
+export const unfollowUser = async (id: string) => {
+    const self = await getSelf()
+
+    // get the other user from the database by id to check if they exist
+    const otherUser = await db.user.findUnique({
+        where: { id }
+    })
+
+    if (!otherUser) {
+        throw new Error("User not found")
+    }
+
+    // if the other user is the same as the current user which is ourself, return true, we are always follower of ourself
+    if (otherUser.id === self.id) {
+        throw new Error("You cannot unfollow yourself")
+    }
+
+    // check if the current user is already following the other user
+    const existingFollow = await db.follow.findFirst({
+        where: {
+            followerId: self.id,
+            followingId: otherUser.id
+        }
+    })
+
+    // if the follow exists, return true, else create a new follow
+    if (!existingFollow) {
+        throw new  Error("You are not following this user")
+    }
+
+    // delete the follow
+    const follow = await db.follow.delete({
+        where: {
+            id: existingFollow.id
+        },
+        include: {
+            following: true,
         }
     })
 
