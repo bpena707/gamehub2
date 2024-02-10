@@ -8,7 +8,6 @@ interface UserPageProps {
         username: string;
     }
 }
-
 const UserPage = async ({ params }: UserPageProps) => {
     const user = await getUserByUsername(params.username)
 
@@ -17,12 +16,13 @@ const UserPage = async ({ params }: UserPageProps) => {
     }
 
     const isFollowing = await isFollowingUser(user.id)
+
     return (
         <div>
         <p>User: {user.username}</p>
             <p>{user.id}</p>
             <p>is following: {`${isFollowing}`}</p>
-            <Actions isFollowing={isFollowing} />
+            <Actions userId={user.id} isFollowing={isFollowing} />
         </div>
     );
 }
