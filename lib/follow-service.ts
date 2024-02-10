@@ -4,6 +4,26 @@ import { db } from "@/lib/db";
 import {getSelf} from "@/lib/auth-service";
 import exp from "node:constants";
 
+// get the followers of the current user that will display on the sidebar
+export const getFollowedUsers = async () => {
+    try {
+        const self = await getSelf()
+
+        const followedUsers = db.follow.findMany({
+            where: {
+                followerId: self.id
+            },
+            include: {
+                following: true
+            }
+        })
+
+        return followedUsers
+    } catch {
+        return []
+    }
+}
+
 export const isFollowingUser = async (id: string) => {
     // try is necessary so that even logged in users can see the profile of other users
     try {

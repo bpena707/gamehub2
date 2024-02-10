@@ -37,7 +37,6 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
         }
     }
 
-
   return (
 
           <Button
