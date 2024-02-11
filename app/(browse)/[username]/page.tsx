@@ -17,6 +17,7 @@ const UserPage = async ({ params }: UserPageProps) => {
 
     const isFollowing = await isFollowingUser(user.id)
 
+
     return (
         <div>
         <p>User: {user.username}</p>
