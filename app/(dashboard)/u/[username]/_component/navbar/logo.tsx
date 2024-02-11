@@ -21,7 +21,7 @@ export const Logo = () => {
                       Gamehub
                   </p>
                   <p className='text-sm text-muted-foreground'>
-                      Let&apos;s play
+                      Creator Dashboard
                   </p>
               </div>
           </div>
