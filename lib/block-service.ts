@@ -1,7 +1,7 @@
 import {db} from "@/lib/db";
 import {getSelf} from "@/lib/auth-service";
 
-export const isBlockedUser = async (id: string) => {
+export const isBlockedByUser = async (id: string) => {
     try {
         const self = await getSelf()
 
