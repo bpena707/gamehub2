@@ -1,6 +1,7 @@
 import {getSelfByUsername} from "@/lib/auth-service";
 import {redirect} from "next/navigation";
 import {Navbar} from "./_component/navbar";
+import {Sidebar} from "./_component/sidebar";
 
 interface CreatorLayoutProps {
     params: {username: string}
@@ -23,6 +24,7 @@ const CreateLayout = async ({
             {/* eslint-disable-next-line react/jsx-no-undef */}
             <Navbar />
             <div className='flex h-full pt-20'>
+                <Sidebar />
                 {children}
             </div>
         </>
