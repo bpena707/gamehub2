@@ -5,6 +5,8 @@ import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
 import {LucideIcon} from "lucide-react";
 import Link from "next/link";
+import exp from "node:constants";
+import {Skeleton} from "@/components/ui/skeleton";
 
 interface NavItemProps {
     icon: LucideIcon;
@@ -20,6 +22,7 @@ export const NavItem = ({
                             isActive
 }: NavItemProps) => {
     const collapsed = useCreatorSidebar(state => state.collapsed)
+
 
     return (
        <div>
@@ -47,5 +50,16 @@ export const NavItem = ({
                </Link>
            </Button>
        </div>
+    )
+}
+
+export const NavItemSkeleton = () => {
+    return (
+        <li className='flex items-center gap-x-4 px-3 py-2'>
+            <Skeleton className='min-h-[48px] min-w-[48px] rounded-md' />
+            <div className='flex-1 hidden lg:block'>
+                <Skeleton className='h-6' />
+            </div>
+        </li>
     )
 }
