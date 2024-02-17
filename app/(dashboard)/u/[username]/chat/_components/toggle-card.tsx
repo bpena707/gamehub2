@@ -5,6 +5,7 @@ import {Switch} from "@/components/ui/switch";
 import {updateStream} from "@/actions/stream";
 import {toast} from "sonner";
 import {useTransition} from "react";
+import {Skeleton} from "@/components/ui/skeleton";
 
 type FieldTypes = 'isChatEnabled' | 'isChatDelayed' | 'isChatFollowersOnly'
 
@@ -24,7 +25,7 @@ const ToggleCard = ({
     const [isPending, startTransition] = useTransition()
     const onChange = async () => {
         startTransition(() => {
-            updateStream({ [field]: false })
+            updateStream({ [field]: !value })
                 .then(() => toast.success('Chat settings updated'))
                 .catch(() => toast.error('Failed to update chat settings'))
         })
@@ -51,3 +52,9 @@ const ToggleCard = ({
 }
 
 export default ToggleCard
+
+export const ToggleCardSkeleton = () => {
+    return (
+        <Skeleton className='rounded-xl p-10 w-full' />
+    )
+}
