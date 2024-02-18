@@ -1,12 +1,15 @@
 'use client'
 
-import {Follow} from "@prisma/client";
+import {Follow, Stream} from "@prisma/client";
 import {User} from ".prisma/client";
 import {useSidebar} from "@/store/use-sidebar";
 import {UserItem, UserItemSkeleton} from "@/app/(browse)/_components/sidebar/user-item";
 
 interface FollowingProps {
-    data: (Follow & { following : User })[]
+    data: (Follow & {
+        following : User & {
+            stream: Stream | null
+        }})[]
 }
 
 export const Following =({data} : FollowingProps) => {
