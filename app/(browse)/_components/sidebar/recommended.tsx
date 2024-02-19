@@ -7,7 +7,7 @@ import {Stream} from "@prisma/client";
 
 interface RecommendedProps {
     data: (User & {
-        stream: Stream | null
+        stream: { isLive: boolean } | null
     })[]
 }
 

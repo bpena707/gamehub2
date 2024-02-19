@@ -8,7 +8,7 @@ import {UserItem, UserItemSkeleton} from "@/app/(browse)/_components/sidebar/use
 interface FollowingProps {
     data: (Follow & {
         following : User & {
-            stream: Stream | null
+            stream: { isLive: boolean } | null
         }})[]
 }
 
