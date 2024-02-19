@@ -6,10 +6,10 @@ import {
     IngressClient,
     IngressVideoEncodingPreset,
     RoomServiceClient,
+    TrackSource,
     type CreateIngressOptions,
 } from "livekit-server-sdk";
 
-import { TrackSource } from "livekit-server-sdk/dist/proto/livekit_models_pb";
 
 import { db } from "@/lib/db";
 import { getSelf } from "@/lib/auth-service";
