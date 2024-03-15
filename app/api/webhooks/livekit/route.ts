@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         return new Response("No authorization header", { status: 400 });
     }
 
-    const event = await receiver.receive(body, authorization);
+    const event = receiver.receive(body, authorization);
 
     if (event.event === "ingress_started") {
         await db.stream.update({
@@ -41,3 +41,4 @@ export async function POST(req: Request) {
         });
     }
 }
+

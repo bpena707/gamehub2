@@ -6,14 +6,17 @@ import {
     IngressClient,
     IngressVideoEncodingPreset,
     RoomServiceClient,
-    TrackSource,
-    type CreateIngressOptions,
+
+    type CreateIngressOptions, IngressVideoEncodingOptions, IngressVideoOptions,
 } from "livekit-server-sdk";
+
+import {TrackSource} from "livekit-server-sdk/dist/proto/livekit_models_pb";
 
 
 import { db } from "@/lib/db";
 import { getSelf } from "@/lib/auth-service";
 import { revalidatePath } from "next/cache";
+import {preset} from "swr/_internal";
 
 const roomService = new RoomServiceClient(
     process.env.LIVEKIT_API_URL!,
@@ -58,13 +61,16 @@ export const createIngress = async (ingressType: IngressInput) => {
     } else {
         options.video = {
             source: TrackSource.CAMERA,
-            preset: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS,
-        };
+
+            preset: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS
+
+        }
         options.audio = {
             source: TrackSource.MICROPHONE,
             preset: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS
-        };
-    };
+        }
+    }
+
 
     const ingress = await ingressClient.createIngress(
         ingressType,

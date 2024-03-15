@@ -3,7 +3,7 @@
 import { currentUser } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 
-
+// get full user in combination with database user
 export const getSelf = async () => {
     const self = await currentUser();
 

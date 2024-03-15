@@ -1,10 +1,10 @@
 'use client'
 
-import {User} from ".prisma/client";
-import {Stream} from "@prisma/client";
+import {Stream, User} from "@prisma/client";
+import {useViewerToken} from "@/hooks /use-viewer-token";
 
 interface StreamPlayerProps {
-    user: User[] & {stream: Stream | null}
+    user: User & {stream: Stream | null}
     stream: Stream
     isFollowing: boolean
 }
@@ -14,11 +14,15 @@ export const StreamPlayer = ({
     stream,
     isFollowing
 }: StreamPlayerProps) => {
+const {token, name, identity} = useViewerToken(user.id)
 
+    if (!token || !name || !identity) {
+        return <div>Cannot watch the stream ...</div>
+    }
 
     return (
         <div>
-            <h1>Stream Player</h1>
+            <h1>Allowed to watch the stream</h1>
         </div>
     )
 }

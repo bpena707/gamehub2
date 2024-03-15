@@ -5,7 +5,6 @@ import { IngressInput } from "livekit-server-sdk";
 import {
     Dialog, DialogClose,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -57,6 +56,7 @@ export const ConnectModal = () => {
                 <DialogHeader>
                     <DialogTitle>Generate Connection</DialogTitle>
                 </DialogHeader>
+                {/*selects the type of connection in the form of a drop down menu*/}
                 <Select
                     disabled={isPending}
                     value={ingressType}
@@ -70,7 +70,7 @@ export const ConnectModal = () => {
                         <SelectItem value={WHIP}>WHIP</SelectItem>
                     </SelectContent>
                 </Select>
-
+                {/*the alert pops up under the drop-down menu and warns the user about reseting connection */}
                 <Alert>
                     <AlertTriangle className='h-4 w-4' />
                     <AlertTitle>Warning!</AlertTitle>
@@ -78,6 +78,7 @@ export const ConnectModal = () => {
                         This action will reset all active streams using the current connection.
                     </AlertDescription>
                 </Alert>
+                {/*this section is for the buttons that appear in the bottom part of the modal to generate or cancel*/}
                 <div className='flex justify-between'>
                     <DialogClose ref={closeRef} asChild>
                         <Button variant='ghost'>
