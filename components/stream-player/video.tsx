@@ -3,6 +3,7 @@ import {ConnectionState, Track} from "livekit-client"
 import {useConnectionState, useRemoteParticipant, useTracks} from "@livekit/components-react"
 import {OfflineVideo} from "@/components/stream-player/offline-video";
 import {LoadingVideo} from "@/components/stream-player/loading-video";
+import {LiveVideo} from "@/components/stream-player/live-video";
 
 interface VideoProps {
     hostName: string
@@ -28,7 +29,7 @@ export const Video = ({hostName, hostIdentity}: VideoProps) => {
     }else if (!participant || tracks.length === 0) {
         content = <LoadingVideo label={connectionState}/>
     }else {
-        content = <p>Live video</p>
+        content = <LiveVideo participant={participant}/>
     }
 
 
