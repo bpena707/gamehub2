@@ -1,4 +1,5 @@
 //uses the current user from clerk and grabs the users id from the database to match them
+// load the creator dashboard using the id
 
 import { currentUser } from "@clerk/nextjs";
 import { db } from "@/lib/db";

@@ -1,5 +1,6 @@
 /*hook to create the identity of the user trying to look at the stream */
 
+
 import { toast } from 'sonner'
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import {useEffect, useState} from "react";
