@@ -37,9 +37,6 @@ const {token, name, identity} = useViewerToken(user.id)
                     hostIdentity={user.id}
                    />
                </div>
-               <div>
-                   another grid
-               </div>
            </LiveKitRoom>
         </>
     )
