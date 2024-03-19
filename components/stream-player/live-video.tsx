@@ -9,6 +9,7 @@ import {FullscreenControl} from "@/components/stream-player/fullscreen-control";
 import {useEventListener} from "usehooks-ts";
 import {VolumeControl} from "@/components/stream-player/volume-control";
 
+// participant is part of the livekit api. it is a class where the remote participant is used in this case
 interface LiveVideoProps {
     participant: Participant
 }
