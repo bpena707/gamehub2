@@ -17,6 +17,7 @@ export const VariantToggle = () => {
 
   const onToggle = () => {
     const newVariant  = isChat ? ChatVariant.COMMUNITY : ChatVariant.CHAT
+      onChangeVariant(newVariant)
   }
 
   const label = isChat ? "Community" : "Go back to chat"
