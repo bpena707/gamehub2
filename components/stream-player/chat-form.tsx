@@ -3,6 +3,7 @@ import {cn} from "@/lib/utils";
 import {Button} from "@/components/ui/button";
 import {useState} from "react";
 import {Skeleton} from "@/components/ui/skeleton";
+import {ChatInfo} from "@/components/stream-player/chat-info";
 
 interface ChatFormProps {
     onSubmit: () => void
@@ -55,6 +56,10 @@ export const ChatForm = ({
         className='flex flex-col items-center gap-y-4 p-3'
       >
           <div className='w-full'>
+              <ChatInfo
+                isDelayed={isDelayed}
+                isFollowersOnly={isFollowersOnly}
+              />
               <Input
                   onChange={() => {}}
                   value={value}
