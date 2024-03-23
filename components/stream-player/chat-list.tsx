@@ -1,6 +1,7 @@
 'use client'
 
 import {ReceivedChatMessage} from "@livekit/components-core";
+import {ChatMessage} from "@/components/stream-player/chat-message";
 
 interface ChatListProps {
     messages: ReceivedChatMessage[]
@@ -23,7 +24,12 @@ export const ChatList = ({
 
   return(
       <div className='flex flex-1 flex-col-reverse overflow-y-auto p-3'>
-          Chat list
+          {messages.map((message) => (
+              <ChatMessage
+                key={message.timestamp}
+                data={message}
+              />
+          ))}
       </div>
   )
 }
