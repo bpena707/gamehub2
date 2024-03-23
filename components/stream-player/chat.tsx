@@ -7,6 +7,7 @@ import {ConnectionState} from "livekit-client";
 import {useEffect, useMemo, useState} from "react";
 import {ChatHeader} from "@/components/stream-player/chat-header";
 import {ChatForm} from "@/components/stream-player/chat-form";
+import {ChatList} from "@/components/stream-player/chat-list";
 
 interface ChatProps {
     hostName: string
@@ -70,6 +71,10 @@ export const Chat = ({
           <ChatHeader/>
           {variant === ChatVariant.CHAT && (
               <>
+                  <ChatList
+                    messages={reversedMessages}
+                    isHidden={isHidden}
+                  />
                   <ChatForm
                     onSubmit={onSubmit}
                     value={value}
