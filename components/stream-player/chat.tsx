@@ -8,6 +8,7 @@ import {useEffect, useMemo, useState} from "react";
 import {ChatHeader} from "@/components/stream-player/chat-header";
 import {ChatForm} from "@/components/stream-player/chat-form";
 import {ChatList} from "@/components/stream-player/chat-list";
+import {ChatCommunity} from "@/components/stream-player/chat-community";
 
 interface ChatProps {
     hostName: string
@@ -41,6 +42,7 @@ export const Chat = ({
     const isHidden = !isChatEnabled || !isOnline
 
     // chatMessages are remapped to messages
+    // the useChat hook recognizes the livekit room from index.tsx
     const [value, setValue] = useState("")
     const {chatMessages: messages, send} = useChat()
 
@@ -88,9 +90,11 @@ export const Chat = ({
               </>
           )}
           {variant === ChatVariant.COMMUNITY && (
-              <>
-                  <p>Community</p>
-              </>
+              <ChatCommunity
+                  hostName={hostName}
+                  viewerName={viewerName}
+                  isHidden={isHidden}
+              />
           )}
       </div>
   )
