@@ -8,6 +8,7 @@ import {useChatSidebar} from "@/store/use-chat-sidebar";
 import {cn} from "@/lib/utils"
 import {Chat} from "@/components/stream-player/chat";
 import {ChatToggle} from "@/components/stream-player/chat-toggle";
+import {Header} from "@/components/stream-player/header";
 
 interface StreamPlayerProps {
     user: User & {stream: Stream | null}
@@ -51,6 +52,15 @@ const {token, name, identity} = useViewerToken(user.id)
                    <Video
                     hostName={user.username}
                     hostIdentity={user.id}
+                   />
+                   <Header
+                       hostName={user.username}
+                       hostIdentity={user.id}
+                       viewerIdentity={identity}
+                       imageUrl={user.imageUrl}
+                       isFollowing={isFollowing}
+                       name={stream.name}
+
                    />
                </div>
                <div className={cn(
