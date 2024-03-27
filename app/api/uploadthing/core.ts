@@ -21,6 +21,8 @@ export const ourFileRouter = {
 
            return { user: self };
        })
+       // when the upload is complete, use the file to update stream in the database using the currently logged in user
+       // the user doesnt have to confirm the upload, it will automatically update the database
        .onUploadComplete(async ({ metadata, file }) => {
            await db.stream.update({
                where: {

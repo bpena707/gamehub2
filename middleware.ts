@@ -6,7 +6,8 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
     publicRoutes: [
         '/', // public route for the home page all users can access
-        "/api/webhooks(.*)" // public route for webhooks
+        "/api/webhooks(.*)", // public route for webhooks
+        "/api/uploadthing"
         ]
 });
 
