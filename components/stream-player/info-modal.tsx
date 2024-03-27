@@ -12,7 +12,7 @@ import {
 import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {startTransition, useState} from "react";
+import {ElementRef, startTransition, useRef, useState, useTransition} from "react";
 import {updateStream} from "@/actions/stream";
 import {toast} from "sonner";
 
@@ -26,6 +26,11 @@ export const InfoModal = ({
     initialName,
     initialThumbnailUrl
 }: InfoModalProps) => {
+    // close ref to close the dialog once the form is submitted
+    const closeRef = useRef<ElementRef<"button">>(null)
+
+    // useTransition to prevent the UI from blocking while the form is being submitted
+    const [isPending, startTransition] = useTransition()
 
     const [name, setName] = useState(initialName)
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +42,10 @@ export const InfoModal = ({
 
         startTransition(() => {
             updateStream({name:name})
-                .then(() => toast.success('Stream updated'))
+                .then(() => {
+                    toast.success('Stream updated')
+                    closeRef?.current?.click()
+                })
                 .catch(() => toast.error('Error updating stream'))
         })
     }
@@ -59,18 +67,19 @@ export const InfoModal = ({
                             Name
                         </Label>
                         <Input
+                            disabled={isPending}
                             placeholder='Stream Name'
                             onChange={onChange}
                             value={name}
                         />
                     </div>
                     <div className='flex justify-between'>
-                        <DialogClose>
+                        <DialogClose ref={closeRef}>
                             <Button type='button' variant='ghost'>
                                 Cancel
                             </Button>
                         </DialogClose>
-                        <Button disabled={false} type='submit' variant='primary'>
+                        <Button disabled={isPending} type='submit' variant='primary'>
                             Save
                         </Button>
                     </div>
