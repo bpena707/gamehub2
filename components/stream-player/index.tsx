@@ -9,6 +9,7 @@ import {cn} from "@/lib/utils"
 import {Chat} from "@/components/stream-player/chat";
 import {ChatToggle} from "@/components/stream-player/chat-toggle";
 import {Header} from "@/components/stream-player/header";
+import {InfoCard} from "@/components/stream-player/info-card";
 
 interface StreamPlayerProps {
     user: User & {stream: Stream | null}
@@ -60,7 +61,12 @@ const {token, name, identity} = useViewerToken(user.id)
                        imageUrl={user.imageUrl}
                        isFollowing={isFollowing}
                        name={stream.name}
-
+                   />
+                   <InfoCard
+                    hostIdentity={user.id}
+                    viewerIdentity={identity}
+                    name={stream.name}
+                    thumbnailUrl={stream.thumbnailUrl}
                    />
                </div>
                <div className={cn(
