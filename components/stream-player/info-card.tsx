@@ -3,6 +3,7 @@
 import {Pencil} from "lucide-react";
 import {Separator} from "@/components/ui/separator";
 import Image from "next/image";
+import {InfoModal} from "@/components/stream-player/info-modal";
 
 interface InfoCardProps {
     name: string
@@ -38,7 +39,10 @@ export const InfoCard = ({
                             Maximize your visibility
                         </p>
                     </div>
-                {/*TODO: ADD MODAL BUTTON*/}
+                <InfoModal
+                    initialName={name}
+                    initialThumbnailUrl={thumbnailUrl}
+                />
                 </div>
                 <Separator />
                 <div className='p-4 lg:p-6 space-y-4'>
