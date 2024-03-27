@@ -12,7 +12,9 @@ import {
 import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {useState} from "react";
+import {startTransition, useState} from "react";
+import {updateStream} from "@/actions/stream";
+import {toast} from "sonner";
 
 
 interface InfoModalProps {
@@ -30,6 +32,16 @@ export const InfoModal = ({
         setName(e.target.value)
     }
 
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        startTransition(() => {
+            updateStream({name:name})
+                .then(() => toast.success('Stream updated'))
+                .catch(() => toast.error('Error updating stream'))
+        })
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -41,7 +53,7 @@ export const InfoModal = ({
                 <DialogHeader>
                     <DialogTitle>Edit stream info</DialogTitle>
                 </DialogHeader>
-                <form className='space-y-14'>
+                <form onSubmit={onSubmit} className='space-y-14'>
                     <div className='space-y-2'>
                         <Label>
                             Name
