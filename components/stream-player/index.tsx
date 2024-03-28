@@ -10,9 +10,13 @@ import {Chat} from "@/components/stream-player/chat";
 import {ChatToggle} from "@/components/stream-player/chat-toggle";
 import {Header} from "@/components/stream-player/header";
 import {InfoCard} from "@/components/stream-player/info-card";
+import {AboutCard} from "@/components/stream-player/about-card";
 
 interface StreamPlayerProps {
-    user: User & {stream: Stream | null}
+    user: User & {
+        stream: Stream | null,
+        _count: {followedBy: number}
+    }
     stream: Stream
     isFollowing: boolean
 }
@@ -67,6 +71,13 @@ const {token, name, identity} = useViewerToken(user.id)
                     viewerIdentity={identity}
                     name={stream.name}
                     thumbnailUrl={stream.thumbnailUrl}
+                   />
+                   <AboutCard
+                    hostName={user.username}
+                    hostIdentity={user.id}
+                    viewerIdentity={identity}
+                    bio={user.bio}
+                    followedByCount={user._count.followedBy}
                    />
                </div>
                <div className={cn(
