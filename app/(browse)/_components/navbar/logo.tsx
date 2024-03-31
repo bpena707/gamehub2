@@ -17,9 +17,9 @@ export const Logo = () => {
                   <Image  alt='GameHub' src='/spooky.svg' height='32' width='32' />
               </div>
               <div className={cn('hidden lg:block', font.className)}>
-                  <p className='text-lg font-semibold'>
-                      Gamehub
-                  </p>
+                  {/*<p className='text-lg font-semibold'>*/}
+                  {/*    Gamehub*/}
+                  {/*</p>*/}
                   <p className='text-sm text-muted-foreground'>
                       Let&apos;s play
                   </p>
