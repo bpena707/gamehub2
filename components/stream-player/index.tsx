@@ -21,7 +21,7 @@ interface StreamPlayerProps {
     isFollowing: boolean
 }
 
-export const Index = ({
+export const StreamPlayer = ({
     user,
     stream,
     isFollowing

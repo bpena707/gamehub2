@@ -7,7 +7,8 @@ export default authMiddleware({
     publicRoutes: [
         '/', // public route for the home page all users can access
         "/api/webhooks(.*)", // public route for webhooks
-        "/api/uploadthing"
+        "/api/uploadthing",
+        "/:username" //allows logged out users to be able to look at the profile of the user
         ]
 });
 
